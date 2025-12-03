@@ -8,20 +8,18 @@ import lombok.Data;
 public class Electeur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idElecteur;
+    private Long cin;
     private String nomElecteur;
     private String prenomElecteur;
-    private String cin;
     private String email;
     private String password;
 
     public Electeur() {
     }
 
-    public Electeur(String nomElecteur, String prenomElecteur, String cin, String email, String password) {
+    public Electeur(String nomElecteur, String prenomElecteur, String email, String password) {
         this.nomElecteur = nomElecteur;
         this.prenomElecteur = prenomElecteur;
-        this.cin = cin;
         this.email = email;
         this.password = password;
     }

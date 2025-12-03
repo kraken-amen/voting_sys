@@ -16,13 +16,13 @@ public class CandidatureServiceImp implements CandidatureService{
     }
 
     @Override
-    public Candidature getCandidatureById(Long idCandidature) {
-        return candidatureRepos.findById(Math.toIntExact(idCandidature)).get();
+    public Candidature getCandidatureById(Long cin) {
+        return candidatureRepos.findById(cin).get();
     }
 
     @Override
-    public void updateCandidature(Long idCandidature, Candidature candidature) {
-        candidatureRepos.findById(Math.toIntExact(idCandidature)).ifPresent(Candidature -> {
+    public void updateCandidature(Long cin, Candidature candidature) {
+        candidatureRepos.findById(cin).ifPresent(Candidature -> {
             Candidature.setNom(candidature.getNom());
             Candidature.setParti(candidature.getParti());
             Candidature.setProgramme(candidature.getProgramme());
@@ -30,8 +30,8 @@ public class CandidatureServiceImp implements CandidatureService{
         });}
 
     @Override
-    public void deleteCandidatureById(Long idCandidature) {
-        candidatureRepos.deleteById(Math.toIntExact(idCandidature));
+    public void deleteCandidatureById(Long cin) {
+        candidatureRepos.deleteById(cin);
     }
 
     @Override

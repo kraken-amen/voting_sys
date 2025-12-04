@@ -15,10 +15,10 @@ public class Selection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSelection;
-    private String postion;
+    private posType postion;
     private Date date;
 
-    public Selection(String postion, Date date) {
+    public Selection(posType postion, Date date) {
         this.postion = postion;
         this.date = date;
     }

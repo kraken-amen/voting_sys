@@ -1,9 +1,6 @@
 package com.projects.voting_system.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -23,4 +20,11 @@ public class Selection {
         this.date = date;
     }
     public Selection() {}
+    @ManyToOne
+    @JoinColumn(name = "CIN_elec")
+    private Electeur electeur;
+
+    @ManyToOne
+    @JoinColumn(name = "candidature_id")
+    private Candidature candidature;
 }

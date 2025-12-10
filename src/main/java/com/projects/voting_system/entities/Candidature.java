@@ -1,10 +1,9 @@
 package com.projects.voting_system.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -23,6 +22,10 @@ public class Candidature {
     }
 
     public Candidature() {
-
     }
+    @OneToMany(mappedBy = "candidature")
+    private List<Vote> votes; // Une candidature reçoit plusieurs votes
+
+    @OneToMany(mappedBy = "candidature")
+    private List<Selection> selections;
 }

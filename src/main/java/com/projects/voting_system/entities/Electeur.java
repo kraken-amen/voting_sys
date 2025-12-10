@@ -3,6 +3,8 @@ package com.projects.voting_system.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 public class Electeur {
@@ -13,7 +15,6 @@ public class Electeur {
     private String prenomElecteur;
     private String email;
     private String password;
-
     public Electeur() {
     }
 
@@ -23,7 +24,9 @@ public class Electeur {
         this.email = email;
         this.password = password;
     }
-//    @OneToOne(mappedBy = "Electeur")
-//    private Vote vote;
+    @OneToMany(mappedBy = "electeur")
+    private List<Vote> votes; // Un électeur peut faire plusieurs votes
 
+    @OneToMany(mappedBy = "electeur")
+    private List<Selection> selections; // Un électeur peut avoir plusieurs sélections
 }

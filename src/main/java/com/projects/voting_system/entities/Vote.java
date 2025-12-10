@@ -20,7 +20,11 @@ public class Vote {
     public Vote() {
 
     }
-//    @OneToOne
-//    @JoinColumn(name="election_id")
-//    private Electeur electeur;
+    @ManyToOne
+    @JoinColumn(name = "CIN_elec")
+    private Electeur electeur; // Un vote est fait par un électeur
+
+    @ManyToOne
+    @JoinColumn(name = "candidature_id")
+    private Candidature candidature;
 }

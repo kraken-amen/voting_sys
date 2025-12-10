@@ -1,6 +1,8 @@
 package com.projects.voting_system.controller;
 
+import com.projects.voting_system.dto.ElecteurDTO;
 import com.projects.voting_system.entities.Electeur;
+import com.projects.voting_system.mapper.ElecteurMapper;
 import com.projects.voting_system.services.Electeur.ElecteurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,10 @@ public class ElecteurController {
         return ElecteurService.getAllElecteurs();
     }
     @PostMapping("/ele")
-    public void addElecteur(@RequestBody Electeur Electeur) {
-        ElecteurService.saveElecteur(Electeur);
+    public ElecteurDTO addElecteur(@RequestBody ElecteurDTO electeur) {
+        Electeur entity = ElecteurMapper.toEntity(electeur);
+        Electeur e=ElecteurService.saveElecteur(entity);
+        return ElecteurMapper.toDTO(e);
     }
     @PutMapping("/ele/{id}")
     public void updateElecteur(@RequestBody Electeur electeur, @PathVariable Long id) {

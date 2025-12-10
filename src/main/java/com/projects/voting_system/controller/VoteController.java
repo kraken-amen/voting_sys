@@ -1,6 +1,8 @@
 package com.projects.voting_system.controller;
 
+import com.projects.voting_system.dto.VoteDTO;
 import com.projects.voting_system.entities.Vote;
+import com.projects.voting_system.mapper.VoteMapper;
 import com.projects.voting_system.services.Vote.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +19,10 @@ public class VoteController {
         return voteService.getAllVotes();
     }
     @PostMapping("/can")
-    public void addVote(@RequestBody Vote vote) {
-        voteService.saveVote(vote);
+    public VoteDTO addVote(@RequestBody VoteDTO vote) {
+        Vote voteEntity = VoteMapper.toEntity(vote);
+        Vote v=voteService.saveVote(voteEntity);
+        return VoteMapper.toDTO(v);
     }
     @PutMapping("/can/{id}")
     public void updateVote(@RequestBody Vote vote, @PathVariable Long id) {

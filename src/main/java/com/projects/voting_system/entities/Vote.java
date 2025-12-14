@@ -20,11 +20,11 @@ public class Vote {
     public Vote() {
 
     }
-    @ManyToOne
-    @JoinColumn(name = "CIN_elec")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CIN_elec",referencedColumnName = "cin", nullable = false)
     private Electeur electeur; // Un vote est fait par un électeur
 
-    @ManyToOne
-    @JoinColumn(name = "candidature_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "candidature_id",nullable = false)
     private Candidature candidature;
 }

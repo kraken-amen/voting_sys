@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Vote")
@@ -15,8 +16,8 @@ public class VoteController {
     @Autowired
     VoteService voteService;
     @GetMapping("/can")
-    public List<Vote> getVotes() {
-        return voteService.getAllVotes();
+    public List<VoteDTO> getVotes() {
+        return voteService.getAllVotes().stream().map(VoteMapper::toDTO).collect(Collectors.toList());
     }
     @PostMapping("/can")
     public VoteDTO addVote(@RequestBody VoteDTO vote) {
@@ -26,8 +27,7 @@ public class VoteController {
     }
     @PutMapping("/can/{id}")
     public void updateVote(@RequestBody Vote vote, @PathVariable Long id) {
-        vote.setIdVote(id);
-        voteService.saveVote(vote);
+        voteService.updateVote(id,vote);
     }
     @DeleteMapping("/can/{id}")
     public void deleteVote(@PathVariable Long id) {

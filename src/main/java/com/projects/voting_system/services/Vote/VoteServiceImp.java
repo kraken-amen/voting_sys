@@ -31,6 +31,6 @@ public class VoteServiceImp implements VoteService {
     }
     @Override
     public List<Vote> getAllVotes() {
-        return List.of();
+        return voteRepos.findAll();
     }
 }

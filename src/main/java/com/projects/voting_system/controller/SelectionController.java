@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/selection")
@@ -15,8 +16,8 @@ public class SelectionController {
     @Autowired
     SelectionService SelectionService;
     @GetMapping("/sel")
-    public List<Selection> getSelections() {
-        return SelectionService.getAllSelections();
+    public List<SelectionDTO> getSelections() {
+        return SelectionService.getAllSelections().stream().map(SelectionMapper::toDTO).collect(Collectors.toList());
     }
     @PostMapping("/sel")
     public void addSelection(@RequestBody SelectionDTO selection) {
@@ -26,8 +27,7 @@ public class SelectionController {
     }
     @PutMapping("/sel/{id}")
     public void updateSelection(@RequestBody Selection selection, @PathVariable Long id) {
-        selection.setIdSelection(id);
-        SelectionService.saveSelection(selection);
+        SelectionService.updateSelection(id,selection);
     }
     @DeleteMapping("/sel/{id}")
     public void deleteSelection(@PathVariable Long id) {

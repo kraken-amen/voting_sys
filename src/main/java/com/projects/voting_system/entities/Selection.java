@@ -20,11 +20,11 @@ public class Selection {
         this.date = date;
     }
     public Selection() {}
-    @ManyToOne
-    @JoinColumn(name = "CIN_elec")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CIN_elec",referencedColumnName = "cin", nullable = false)
     private Electeur electeur;
 
-    @ManyToOne
-    @JoinColumn(name = "candidature_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "candidature_id",nullable = false)
     private Candidature candidature;
 }

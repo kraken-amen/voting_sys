@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 public class Electeur {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cin;
     private String nomElecteur;
     private String prenomElecteur;
@@ -18,7 +17,8 @@ public class Electeur {
     public Electeur() {
     }
 
-    public Electeur(String nomElecteur, String prenomElecteur, String email, String password) {
+    public Electeur(Long cin,String nomElecteur, String prenomElecteur, String email, String password) {
+        this.cin=cin;
         this.nomElecteur = nomElecteur;
         this.prenomElecteur = prenomElecteur;
         this.email = email;

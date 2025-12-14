@@ -36,6 +36,6 @@ public class CandidatureServiceImp implements CandidatureService{
 
     @Override
     public List<Candidature> getAllCandidatures() {
-        return List.of();
+        return candidatureRepos.findAll();
     }
 }

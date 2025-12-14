@@ -36,6 +36,6 @@ public class SelectionServiceImp implements SelectionService {
 
     @Override
     public List<Selection> getAllSelections() {
-        return List.of();
+        return selectionRepos.findAll();
     }
 }

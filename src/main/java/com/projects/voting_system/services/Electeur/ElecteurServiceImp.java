@@ -39,6 +39,6 @@ public class ElecteurServiceImp implements ElecteurService {
 
     @Override
     public List<Electeur> getAllElecteurs() {
-        return List.of();
+        return electeurRepos.findAll();
     }
 }

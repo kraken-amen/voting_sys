@@ -23,9 +23,9 @@ public class Candidature {
 
     public Candidature() {
     }
-    @OneToMany(mappedBy = "candidature")
+    @OneToMany(mappedBy = "candidature",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Vote> votes; // Une candidature reçoit plusieurs votes
 
-    @OneToMany(mappedBy = "candidature")
+    @OneToMany(mappedBy = "candidature",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Selection> selections;
 }

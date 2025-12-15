@@ -7,4 +7,6 @@ import java.util.Date;
 public class VoteDTO {
     private Long idVote;
     private Date dateVote;
+    private Long CIN_elec;
+    private Long candidature_id;
 }

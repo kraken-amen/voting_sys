@@ -9,4 +9,6 @@ public class SelectionDTO {
     private Long idSelection;
     private posType postion;
     private Date date;
+    private Long CIN_elec;
+    private Long candidature_id;
 }

@@ -1,6 +1,8 @@
 package com.projects.voting_system.services.Electeur;
 
+import com.projects.voting_system.dto.ElecteurDTO;
 import com.projects.voting_system.entities.Electeur;
+import com.projects.voting_system.mapper.ElecteurMapper;
 import com.projects.voting_system.repos.ElecteurRepos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +23,18 @@ public class ElecteurServiceImp implements ElecteurService {
     }
 
     @Override
-    public void updateElecteur(Long id, Electeur elec) {
-        electeurRepos.findById(id).ifPresent(electeur -> {
-            electeur.setNomElecteur(elec.getNomElecteur());
-            electeur.setPrenomElecteur(elec.getPrenomElecteur());
-            electeur.setEmail(elec.getEmail());
-            electeur.setPassword(elec.getPassword());
-            electeurRepos.save(electeur);
-        });
+    public ElecteurDTO updateElecteur(Long cin, ElecteurDTO dto) {
+        Electeur existingElecteur = electeurRepos.findById(cin)
+                .orElseThrow(() -> new RuntimeException("Electeur not found"));
 
+        existingElecteur.setNomElecteur(dto.getNomElecteur());
+        existingElecteur.setPrenomElecteur(dto.getPrenomElecteur());
+        existingElecteur.setEmail(dto.getEmail());
+        existingElecteur.setPassword(dto.getPassword());
+
+        return ElecteurMapper.toDTO(electeurRepos.save(existingElecteur));
     }
+
 
     @Override
     public void deleteElecteurById(Long idElecteur) {

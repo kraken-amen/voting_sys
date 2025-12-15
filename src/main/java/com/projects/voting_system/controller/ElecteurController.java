@@ -6,6 +6,7 @@ import com.projects.voting_system.entities.Electeur;
 import com.projects.voting_system.mapper.ElecteurMapper;
 import com.projects.voting_system.services.Electeur.ElecteurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,9 @@ public class ElecteurController {
         ResponseEntity.ok("electeur ajouté avec succès !");
         return ElecteurMapper.toDTO(e);
     }
-    @PutMapping("/ele/{id}")
-    public void updateElecteur(@RequestBody Electeur electeur, @PathVariable Long id) {
+    @PutMapping(value = "/ele/{id}",consumes = MediaType.APPLICATION_JSON_VALUE,
+    produces = MediaType.APPLICATION_JSON_VALUE)
+    public void updateElecteur(@RequestBody ElecteurDTO electeur, @PathVariable Long id) {
         ResponseEntity.ok("electeur modifier avec succès !");
         ElecteurService.updateElecteur(id,electeur);
     }

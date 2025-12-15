@@ -1,5 +1,6 @@
 package com.projects.voting_system.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,9 +25,11 @@ public class Electeur {
         this.email = email;
         this.password = password;
     }
-    @OneToMany(mappedBy = "electeur")
+    @OneToMany(mappedBy = "electeur",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Vote> votes; // Un électeur peut faire plusieurs votes
 
-    @OneToMany(mappedBy = "electeur")
+    @OneToMany(mappedBy = "electeur",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Selection> selections; // Un électeur peut avoir plusieurs sélections
 }

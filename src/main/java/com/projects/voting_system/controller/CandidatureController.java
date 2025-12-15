@@ -28,7 +28,7 @@ public class CandidatureController {
         return CandidatureMapper.toDTO(c);
     }
     @PutMapping("/can/{id}")
-    public void updateCandidature(@RequestBody Candidature candidature, @PathVariable Long id) {
+    public void updateCandidature(@RequestBody CandidatureDTO candidature, @PathVariable Long id) {
         ResponseEntity.ok("candidature modifier avec succès !");
         candidatureService.updateCandidature(id, candidature);
     }

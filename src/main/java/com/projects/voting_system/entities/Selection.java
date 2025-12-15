@@ -1,5 +1,6 @@
 package com.projects.voting_system.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,9 +23,11 @@ public class Selection {
     public Selection() {}
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CIN_elec",referencedColumnName = "cin", nullable = false)
+    @JsonBackReference
     private Electeur electeur;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "candidature_id",nullable = false)
+    @JsonBackReference
     private Candidature candidature;
 }
